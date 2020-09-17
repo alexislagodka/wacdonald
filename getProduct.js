@@ -12,14 +12,14 @@ fetch('./assets/Wacdonald/Wacdonald/menu.json')
         let productelement ="";
 
         menu.cat==="menu" ? menuelement = `
-        <div class="card-menu-item">
+        <div class="card-menu-item" id="`+menu.id+`" >
                     <img src="/assets/Wacdonald/Wacdonald/icons/`+menu.icon+`"/>
                     <div>`+menu.name+`</div>
                 </div>
         ` : '' ;
 
         menu.cat==="product" ? productelement = `
-        <div class="card-menu-item">
+        <div class="card-menu-item" key="" >
                     <img src="/assets/Wacdonald/Wacdonald/icons/`+menu.icon+`"/>
                     <div>`+menu.name+`</div>
                 </div>
@@ -28,6 +28,4 @@ fetch('./assets/Wacdonald/Wacdonald/menu.json')
             document.getElementById("menu").insertAdjacentHTML('beforeend', menuelement);
             document.getElementById("product").insertAdjacentHTML('beforeend', productelement);
         });
-
-        
     });
