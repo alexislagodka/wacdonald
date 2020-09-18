@@ -106,13 +106,12 @@ function addItemToOder(){
                 document.getElementById(`counter-`+order.id).setAttribute("value",counterValue);
                 document.getElementById(`counter-`+order.id).innerHTML = counterValue;
 
-                //update item price
+                //update price
                 price = price - order.price;
                 totalNode = document.getElementById("total-price");
                 totalNode.innerHTML = "$"+price;
                 totalNode.setAttribute("value", price);
-                //update order price
-
+                
             }
         });
     })
