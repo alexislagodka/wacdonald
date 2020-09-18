@@ -1,5 +1,7 @@
-console.log('get Menu & pruduct');
+console.log('start script');
+
 let orderedElements = [];
+
 fetch('./assets/Wacdonald/Wacdonald/menu.json')
   .then(response => response.json())
   .then(data => {
@@ -41,22 +43,32 @@ fetch('./assets/Wacdonald/Wacdonald/menu.json')
             });
             element.addEventListener("click",function(){
                 console.log(element.id);
-                let selected = menus.find(menu => menu.id == element.id);
-                console.log(selected);
-                 let orderelement = `
+                let menuSelected = menus.find(menu => menu.id == element.id);
+                console.log(menuSelected);
+                orderedElements.includes(menuSelected) ?  "" : orderedElements.push(menuSelected);
+                //orderedElements.push(menuSelected);
+                console.log(orderedElements);
+                refreshOrder();
+            });
+        });
+});
+
+function refreshOrder(){
+    document.getElementById("orderlist").innerHTML ="";
+    console.log("refrech");
+    orderedElements.map( order => {
+        let orderelement = `
                     <div class="order-item">
-                        <img src="/assets/Wacdonald/Wacdonald/icons/`+selected.icon+`"/>
-                        <div class="item-title">`+selected.name+`</div>
-                        <div class="item-price">$ `+selected.price+`</div>
+                        <img src="/assets/Wacdonald/Wacdonald/icons/`+order.icon+`"/>
+                        <div class="item-title">`+order.name+`</div>
+                        <div class="item-price">$ `+order.price+`</div>
                         <div class="item-counter">
                             <button class="add-button" value="-">-</button>
                             <div class="counter">1</div>
                             <button class="en-button" value="+">+</button>
                     </div>
                 `;
-                document.getElementById("orderlist").insertAdjacentHTML("beforeend", orderelement);
-            });
-        });
-       
-});
+        document.getElementById("orderlist").insertAdjacentHTML("beforeend", orderelement);
+    });
+}
     
